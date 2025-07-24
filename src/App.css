@@ -1,38 +1,263 @@
-.App {
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333; /* Default text color */
+}
+
+/* Header Styles */
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  position: relative;
+  padding-top: 150px; /* Adjust this value based on your logo's height and desired top spacing */
+  padding-bottom: 30px; /* Add some space below the title */
+}
+
+/* Logo Placeholder/Container */
+.logo-placeholder {
+  position: absolute;
+  top: 20px; /* Distance from the top of the header */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the element horizontally */
+  /* This div primarily serves for positioning the logo */
+}
+
+/* Actual Logo Image Styles */
+.company-logo {
+  width: 120px; /* Set your desired width for the logo */
+  height: auto; /* This maintains the aspect ratio */
+  display: block; /* Removes extra space below the image */
+  /* border-radius: 8px; /* Optional: if your logo should have rounded corners */
+  /* Add a subtle shadow if you like */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+/* Page Title (H1) */
+.App-header h1 {
+  margin-top: 0; /* Remove default margin as we use padding-top on the header itself */
+  font-size: 2.2em; /* Slightly larger for prominence */
+}
+
+/* Main Content Area */
+.main-content {
+  display: flex;
+  flex-wrap: wrap; /* Allows divisions to wrap to the next line on smaller screens */
+  justify-content: center; /* Centers divisions when there's space */
+  padding: 20px;
+  gap: 20px; /* Space between divisions */
+}
+
+/* Individual Division Styles */
+.division {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+  padding: 25px;
+  flex: 1; /* Allows divisions to grow and shrink */
+  min-width: 300px; /* Minimum width for each division */
+  max-width: 450px; /* Optional: Maximum width to prevent them from becoming too wide */
+  margin-bottom: 20px; /* Space between divisions vertically */
+}
+
+.division h2 {
+  color: #0056b3; /* A nice blue color for division titles */
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* Subscription Sections */
+.subscription-section {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.subscription-section h3 {
+  margin-top: 0;
+  color: #555;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+}
+
+.subscription-section div {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.subscription-section input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2); /* Slightly larger checkboxes */
+}
+
+.subscription-section label {
+  cursor: pointer; /* Indicates it's clickable */
+}
+
+/* General Summary Styles (used in multiple divisions) */
+.summary {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  font-weight: bold;
+  background-color: #eaf6ff; /* Light blue background for summaries */
+  padding: 15px;
+  border-radius: 5px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.summary h3 {
+  color: #007bff;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.summary p {
+  margin: 5px 0;
+  font-size: 1.1em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Profit Share Package Selection */
+.package-selection {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.package-selection div {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.package-selection input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+.package-selection label {
+  cursor: pointer;
+}
+
+/* Annual Transaction Factor Selection */
+.transaction-selection {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* Align label and select to the left */
+}
+
+.transaction-selection label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+.transaction-selection select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Hardware Selection */
+.hardware-selection {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.hardware-item {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 15px;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.hardware-item input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+.hardware-item label {
+  margin-right: 15px;
+  flex-grow: 1; /* Allows label to take up available space */
+  color: #555;
+  cursor: pointer;
+}
+
+.hardware-price-input {
+  width: 140px; /* Adjust width as needed for price input */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  text-align: right; /* Align text to the right for numbers */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Total Bonus Footer */
+.total-bonus-footer {
+  background-color: #4CAF50; /* A pleasant green color */
   color: white;
+  padding: 25px;
+  text-align: center;
+  margin-top: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* More pronounced shadow */
+  width: 80%; /* Make it span most of the page */
+  max-width: 600px; /* Prevent it from getting too wide */
+  margin-left: auto; /* Center the block */
+  margin-right: auto; /* Center the block */
+  margin-bottom: 40px; /* Space from the bottom of the page */
 }
 
-.App-link {
-  color: #61dafb;
+.total-bonus-footer h2 {
+  margin: 0;
+  font-size: 2.5em; /* Larger font for the final total */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Subtle text shadow */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column; /* Stack divisions vertically on smaller screens */
+    align-items: center; /* Center them */
   }
-  to {
-    transform: rotate(360deg);
+
+  .division {
+    max-width: 90%; /* Take up more width on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header h1 {
+    font-size: 1.8em;
+  }
+  .total-bonus-footer h2 {
+    font-size: 1.8em;
+  }
+  .division {
+    padding: 15px;
   }
 }
