@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# **Application Documentation: LLPOS Swedbank Provision Model**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+### 📋 **Application Overview**
 
-In the project directory, you can run:
+The **LLPOS Swedbank Provision Model** is a single-page web application built with **React.js**. It's designed to help sales representatives quickly calculate a deal's profitability and their potential commission. By inputting key deal metrics, users can instantly see if a deal meets acceptance criteria and what the financial outcomes are. The app is ideal for use as a static site, such as on GitHub Pages.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 💻 **Technology Stack**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React.js**: A JavaScript library used for building the user interface.
+- **JavaScript (ES6+)**: The core programming language for the application's logic.
+- **CSS**: For all styling and layout.
+- **gh-pages**: An npm package that simplifies the process of deploying the app to GitHub Pages.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📝 **Key Features and Logic**
 
-### `npm run build`
+The application is structured into three main sections: Deal Inputs, Hardware Selection, and Calculation Results. The core logic is driven by a single React `useEffect` hook that recalculates all outputs dynamically as the user changes any input.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### **1. Deal Inputs**
+This section contains all the variables an agent can modify to model a deal. The inputs are:
+- **Monthly Subscription Amount**: The monthly fee in DKK.
+- **Expected Merchant Annual Sales Amount**: The total expected sales volume in DKK over a year.
+- **Merchant Transaction Fee**: A percentage-based fee chosen from a dropdown list. Higher fees (above 0.69%) are visually highlighted to encourage selection.
+- **Softpay Licenses Needed**: The number of Softpay licenses required.
+- **Contract Binding Duration**: The length of the contract in months, which influences the sales representative's percentage.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### **2. Hardware Selection**
+Agents can select one or more hardware devices for the deal.
+- Selecting a device via a **checkbox** reveals input fields for **quantity** and **sales price**.
+- The `cost` of each device is displayed for reference, and the logic ensures that if the **Contract Binding Duration** is **0 months**, the sales price cannot be set below the device's cost.
+- New labels dynamically display the **Total Cost** and **Total Price** for the selected quantity, providing a quick summary for the agent.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### **3. Core Calculation Logic**
+All financial calculations are performed automatically and update in real-time. The key calculations are:
+- **`Remaining Fee`**: `Merchant Transaction Fee - Acquirer Fee`
+- **`LL Share`**: `40%` for `Merchant Transaction Fee <= 0.69%`, and `50%` otherwise.
+- **`Sales Rep Percentage`**: `15%` for `0 months`, `20%` for `12 months`, `22%` for `24 months`, and `24%` for `36 months`.
+- **`Annual Subscription Revenue`**: `12 * Monthly subscription amount`
+- **`Annual Profit Share Revenue`**: `Expected Annual Sales * Remaining Fee * LL Share`
+- **`Hardware Revenue`**: `Total sum of ((Sales Price - Cost) * Quantity)` for all selected devices.
+- **`Total Revenue`**: `Annual Subscription Revenue + Annual Profit Share Revenue + Hardware Revenue + Hardware Gifting - Annual Softpay Cost`.
+- **`Sales Rep Commission`**: `(Total Revenue * Sales Rep Percentage) + Bonus`
+  - A bonus of `750 DKK` is added if the total `Hardware Revenue` is greater than `1500 DKK`.
 
-### `npm run eject`
+#### **4. Deal Acceptance**
+The deal is marked as **Accepted** only if two conditions are met:
+1. The **`Total Revenue`** is positive.
+2. The monthly average of the `Annual Subscription Revenue` and `Annual Profit Share Revenue` is greater than `250 DKK`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ⚙️ **Development and Deployment**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Installation**: To run the project locally, navigate to the project directory in your terminal and run `npm install`.
+- **Local Development**: To start the local development server and view the app in your browser, run `npm start`.
+- **Deployment to GitHub Pages**: After configuring the `homepage` in `package.json` and installing the `gh-pages` package, deploy the app with the `npm run deploy` command.
