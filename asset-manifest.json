@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/llpos-provision-model/static/css/main.24c9667e.css",
-    "main.js": "/llpos-provision-model/static/js/main.0e4bb8bd.js",
+    "main.js": "/llpos-provision-model/static/js/main.40ea14d5.js",
     "static/js/453.27648759.chunk.js": "/llpos-provision-model/static/js/453.27648759.chunk.js",
     "index.html": "/llpos-provision-model/index.html",
     "main.24c9667e.css.map": "/llpos-provision-model/static/css/main.24c9667e.css.map",
-    "main.0e4bb8bd.js.map": "/llpos-provision-model/static/js/main.0e4bb8bd.js.map",
+    "main.40ea14d5.js.map": "/llpos-provision-model/static/js/main.40ea14d5.js.map",
     "453.27648759.chunk.js.map": "/llpos-provision-model/static/js/453.27648759.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.24c9667e.css",
-    "static/js/main.0e4bb8bd.js"
+    "static/js/main.40ea14d5.js"
   ]
 }
